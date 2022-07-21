@@ -1,0 +1,544 @@
+package Calculator;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+class GuiCalculator implements ActionListener 
+{
+	int  operator=0;
+	 double a=0,b=0,result=0;
+	Operation obj=new Operation();
+JLabel Name,SLab;
+ JButton _1,_2,_3,_4,_5,_6,_7,_8,_9,_0,_dot,clear,plus,negative,divide,multi,total,sin,cos,log,fact,tan,sqrt,reci,sqr;
+ JTextField Result;
+ JFrame frame;
+ JRadioButton type,type1;
+ JPanel panel;
+ Font text,text1;
+ ButtonGroup jodouble;
+     GuiCalculator()
+     { 
+    	 Result=new JTextField();
+    	 _1=new JButton("1");
+    	 _2=new JButton("2");
+    	 _3=new JButton("3");
+    	 _4=new JButton("4");
+    	 _5=new JButton("5");
+    	 _6=new JButton("6");
+    	 _7=new JButton("7");
+    	 _8=new JButton("8");
+    	_9=new JButton("9");
+    	_0=new JButton("0");
+    	_dot=new JButton(".");
+    	clear=new JButton("CLR");
+    	plus=new JButton("+");
+    	divide=new JButton("/");
+    	multi=new JButton("*");
+    	negative=new JButton("-");
+    	jodouble=new ButtonGroup();
+    	cos=new JButton("Cos");
+    	log=new JButton("Log");
+    	sin=new JButton("Sin");
+    	reci=new JButton("1/n");
+    	fact=new JButton("n!");
+    	tan=new JButton("Tan");
+    	sqrt=new JButton("sqrt");
+    	sqr=new JButton("n^2");
+    	type=new JRadioButton("Radian",true);
+    	type1=new JRadioButton("Degree");
+    	jodouble=new ButtonGroup();
+    	jodouble.add(type);
+    	jodouble.add(type1);
+	total=new JButton("=");
+    	SLab=new JLabel("");
+  //setFont 
+	   text=new Font("Sansserif",Font.BOLD,35);
+	   text1=new Font("Sansserif",Font.BOLD,18);
+	   _1.setFont(text1);
+	   _2.setFont(text1);
+	   _3.setFont(text1);
+	   _4.setFont(text1);
+	   _5.setFont(text1);
+	   _6.setFont(text1);
+	   _7.setFont(text1);
+	   _8.setFont(text1);
+	   _9.setFont(text1);
+	   _0.setFont(text1);
+	   _dot.setFont(text1);
+	   cos.setFont(text1);
+	   clear.setFont(text1);
+	   plus.setFont(text1);
+	   log.setFont(text1);
+	   sin.setFont(text1);
+	   divide.setFont(text1);
+	   negative.setFont(text1);
+	   multi.setFont(text1);
+	   tan.setFont(text1);
+	   sqrt.setFont(text1);
+	   fact.setFont(text1);
+	   reci.setFont(text1);
+	   sqr.setFont(text1);
+	   total.setFont(text1);
+	  Result.setFont(text);
+//color
+	   Result.setBackground(Color.lightGray);
+	   Result.setToolTipText("Enter The Value");
+	   Result.setForeground(Color.black);
+	   _1.setBackground(Color.white);
+	   _2.setBackground(Color.white);
+	   _3.setBackground(Color.white);
+	   _4.setBackground(Color.white);
+	   _5.setBackground(Color.white);
+	   _6.setBackground(Color.white);
+	   _7.setBackground(Color.white);
+	   _8.setBackground(Color.white);
+	   _9.setBackground(Color.white);
+	   _0.setBackground(Color.white);
+	   _dot.setBackground(Color.white);
+	   clear.setBackground(Color.white);
+	   plus.setBackground(Color.white);
+	   divide.setBackground(Color.white);
+	   multi.setBackground(Color.white);
+	   negative.setBackground(Color.white);
+	   cos.setBackground(Color.white);
+	   log.setBackground(Color.white);
+	   sin.setBackground(Color.white);
+	   fact.setBackground(Color.white);
+	   tan.setBackground(Color.white);
+	   sqrt.setBackground(Color.white);
+	   reci.setBackground(Color.white);
+	   sqr.setBackground(Color.white);
+	   total.setBackground(Color.white);
+	   total.setToolTipText("Click for Toal");
+	   type.setBackground(Color.lightGray);
+	   type.setForeground(Color.black);
+	   type1.setBackground(Color.lightGray);
+	   type1.setForeground(Color.black);
+//setBounds
+	   SLab.setBounds(0,10,150,30);
+	   Result.setBounds(40,50,510,80);
+	   _1.setBounds(60,170,80,60);
+	   _2.setBounds(140,170,80,60);
+	   _3.setBounds(220,170,80,60);
+	   _4.setBounds(60,231,80,60);
+	   _5.setBounds(140,231,80,60);
+	   _6.setBounds(220,231,80,60);
+	   _7.setBounds(60,292,80,60);
+	   _8.setBounds(140,292,80,60);
+	   _9.setBounds(220,292,80,60);
+	   _0.setBounds(60,353,80,60);
+	   _dot.setBounds(140,414,80,60);
+	   clear.setBounds(220,415,80,60);
+	   plus.setBounds(330,231,80,60);
+	   divide.setBounds(330,170,80,60);
+	   multi.setBounds(330,292,80,60);
+	   negative.setBounds(330,353,80,60);
+	   sqr.setBounds(60,414,80,60);
+	   total.setBounds(220,353,80,60);
+	   cos.setBounds(414,231,80,60);
+	   log.setBounds(414,292,80,60);
+	   sin.setBounds(414,170,80,60);
+	   tan.setBounds(414,353,80,60);
+	   reci.setBounds(414,414,80,60);
+	   fact.setBounds(140,353,80,60);
+	   sqrt.setBounds(330,415,80,60);
+//action
+	   _1.addActionListener(this);
+	   _2.addActionListener(this);
+	   _3.addActionListener(this);
+	   _4.addActionListener(this);
+	   _5.addActionListener(this);
+	   _6.addActionListener(this);
+	   _7.addActionListener(this);
+	   _8.addActionListener(this);
+	   _9.addActionListener(this);
+	   _0.addActionListener(this);
+	   _dot.addActionListener(this);
+	   clear.addActionListener(this);
+	   cos.addActionListener(this);
+	   plus.addActionListener(this);
+	   log.addActionListener(this);
+	   sin.addActionListener(this);
+	   divide.addActionListener(this);
+	   multi.addActionListener(this);
+	   negative.addActionListener(this);
+	   fact.addActionListener(this);
+	   tan.addActionListener(this);
+	   sqrt.addActionListener(this);
+	   sqr.addActionListener(this);
+	   reci.addActionListener(this);
+	   total.addActionListener(this);
+//panel
+	   panel=new JPanel();
+	   panel.setLayout(null);
+	   panel.setVisible(true);
+	   panel.setBackground(Color.white);
+	   panel.add(Result);
+	   panel.add(_1);
+	   panel.add(_2);
+	   panel.add(_3);
+	   panel.add(_4);
+	   panel.add(_5);
+	   panel.add(_6);
+	   panel.add(_7);
+	   panel.add(_8);
+	   panel.add(_9);
+	   panel.add(_0);
+	   panel.add(_dot);
+	   panel.add(clear);
+	   panel.add(plus);
+	   panel.add(divide);
+	   panel.add(multi);
+	   panel.add(negative);
+	   panel.add(total);
+	   panel.add(cos);
+	   panel.add(log);
+	   panel.add(sin);
+	   panel.add(fact);
+	   panel.add(tan);
+	   panel.add(sqrt);
+	   panel.add(sqr);
+	   panel.add(reci);
+	   panel.add(type);
+	   panel.add(type1);
+	   panel.add(SLab);
+	 
+//Frame 
+	   frame =new JFrame(" GUI BASED SCIENTIFIC CALCULATOR BY DIVYA SENGAR ");
+	   frame.setBounds(600,300,600,570);
+	   frame.setVisible(true);
+	   frame.getContentPane().add(panel);
+	   frame.setResizable(false);
+	   frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+	 }
+	  
+
+public void actionPerformed(ActionEvent ae)
+{
+if(ae.getSource()==_1)
+ 	{
+			Result.setText(Result.getText().concat("1"));
+ 	}
+ else if(ae.getSource()==_2)
+ 	{
+	 		Result.setText(Result.getText().concat("2"));
+ 	}		
+ else if(ae.getSource()==_3)
+ 	{
+	 		Result.setText(Result.getText().concat("3"));
+ 	}
+  else if(ae.getSource()==_4)
+  	{
+	  		Result.setText(Result.getText().concat("4"));
+  	}
+  else if(ae.getSource()==_5)
+  	{
+	  		Result.setText(Result.getText().concat("5"));
+  	}
+  else if(ae.getSource()==_6)
+  	{
+	  		Result.setText(Result.getText().concat("6"));
+  	}
+  else if(ae.getSource()==_7)
+  	{
+	  		Result.setText(Result.getText().concat("7"));
+  	}
+  else if(ae.getSource()==_8)
+  	{
+	  		Result.setText(Result.getText().concat("8"));
+  	}
+  else if(ae.getSource()==_9)
+  	{
+	  		Result.setText(Result.getText().concat("9"));
+  	}
+  else if(ae.getSource()==_0)
+  	{
+	  		Result.setText(Result.getText().concat("0"));
+  	}
+  else if(ae.getSource()==_dot)
+  	{
+	  		Result.setText(Result.getText().concat("."));
+  	}
+ else if(ae.getSource()==plus)
+ 	{
+	 		a=Double.parseDouble(Result.getText()); 
+	 		operator=1;
+	 		Result.setText("");
+ 	}
+ else if(ae.getSource()==log)
+ 	{
+	 		a=Double.parseDouble(Result.getText());
+	 		result=obj.LogValue(a);
+	 		Result.setText(""+result);
+ 	}
+ else if(ae.getSource()==divide)
+ 	{
+			a=Double.parseDouble(Result.getText()); 
+			operator=4;
+			Result.setText("");
+ 	}
+ else if(ae.getSource()==multi)
+   {    
+	 		a=Double.parseDouble(Result.getText()); 
+	 		operator=5;
+	 		Result.setText("");
+    
+   }
+ else if(ae.getSource()==negative)
+ 	{
+	 		a=Double.parseDouble(Result.getText()); 
+	 		operator=6;
+	 		Result.setText("");
+ 	}
+ else if(ae.getSource()==sqrt)
+ 	{
+    
+	 		a=Double.parseDouble(Result.getText()); 
+	 		result=obj.SquareRoot(a);
+	 		Result.setText(""+result);
+	 		operator=8;
+  //Result.setText("");
+ 	}
+ else if(ae.getSource()==reci)
+ 	{
+    
+	 		a=Double.parseDouble(Result.getText()); 
+	 		result=obj.Reciprocal(a);
+	 		Result.setText(""+result);
+	 		operator=13;
+	 		//Result.setText("");
+ 	}
+ else if(ae.getSource()==sqr)
+ 	{
+    
+	 		a=Double.parseDouble(Result.getText()); 
+	 		result=obj.Square(a);
+	 		Result.setText(""+result);
+	 		operator=14;
+	 		//Result.setText("");
+ 	}
+ else if(ae.getSource()==sin)
+ 	{    if(type.isSelected())
+ 			{     
+ 				a=Double.parseDouble(Result.getText()); 
+ 				operator=9;
+ 				result=obj.SinValue1(a);
+ 				Result.setText(""+result);
+ 			}
+ 		if(type1.isSelected())
+ 			{   
+ 				result=obj.SinValue(a);
+ 				a=Double.parseDouble(Result.getText());
+ 				operator=9;
+ 				Result.setText(""+result);
+   
+ 			}
+   
+ 	}
+ else if(ae.getSource()==cos)
+ 	{
+  
+	 	if(type.isSelected())
+	 		{
+  
+			    a=Double.parseDouble(Result.getText()); 
+			    result=obj.CosValue1(a);
+			    Result.setText(""+result);
+
+	 		}
+	 	if(type1.isSelected())
+	 		{
+ 
+				  result=obj.CosValue(a);
+				  a=Double.parseDouble(Result.getText()); 
+				  Result.setText(""+result);
+	 		}
+  
+ 	}
+ else if(ae.getSource()==fact)
+ 	{    
+	 	a=Double.parseDouble(Result.getText()); 
+	 	result=obj.Factorial(a);
+	 	Result.setText(""+result);
+ 	}
+else if(ae.getSource()==tan)
+ 	{
+			if(type.isSelected())
+				{     
+					a=Double.parseDouble(Result.getText()); 
+				      result=obj.TanValue1(a);
+				      Result.setText(""+result);
+				}
+			if(type1.isSelected())
+				{   
+					result=obj.TanValue(a);
+					a=Double.parseDouble(Result.getText()); 
+					Result.setText(""+result);
+    
+				}      
+   
+  }
+else if (ae.getSource()==total)
+ {
+   b=Double.parseDouble (Result.getText());
+  switch(operator)
+  {   
+  case 1:
+      result=obj.Add(a,b);
+   
+    break;
+  case 4:
+	  result=obj.Divide(a,b);
+   break;
+   
+  case 5:
+	  result=obj.Multi(a,b);
+   break;
+  
+  case 6:
+	  result=obj.Sub(a,b);
+   break;
+  case 7:
+      result=obj.LogValue(a);
+   break;
+  
+  case 8:
+      result=obj.SquareRoot(a);
+   
+    break;
+  case 9:
+      result=obj.SinValue(a);
+   break;
+  case 10:
+      result=obj.CosValue(a);
+   break;
+   case 11:
+	   result=obj.TanValue(a);
+   break;
+   case 12:
+      result=obj.Factorial(a);
+   break;
+   case 13:
+	      result=obj.Reciprocal(a);
+	   break;
+   case 14:
+	      result=obj.Square(a);
+	   break;
+}
+   Result.setText(""+result);
+ }
+  else if(ae.getSource()==clear)
+  	{
+	  Result.setText("");
+  	}
+
+}
+
+}
+
+class Operation 
+	{   
+		public double Add(double input,double  input2)
+			{   
+				double  c=input+input2;
+				return(c);
+
+			}
+
+		public double Sub(double  input,double  input2)
+			{
+
+				double  c=input-input2;
+				return(c);
+			}
+		public double Multi(double  input,double  input2)
+			{  
+				double  c=input*input2;
+				return(c);
+			}
+
+		public double Divide(double  input,double  input2)
+			{  
+				double  c=input/input2;
+				return(c);
+			}
+		public double LogValue(double  input)
+			{    
+			   double result=(Math.log10(input));
+			   return result;
+			}
+
+		public double SquareRoot(double input)
+			{     
+				input=(Math.sqrt(input));
+				return input;
+ 
+			}
+		public double Reciprocal(double  input)
+			{  
+				double  c=1/input;
+				return(c);
+			}
+		public double Square(double  input)
+			{  
+				double  c=(input*input);
+				return(c);
+			}
+		public double Factorial(double input)
+			{   
+				double factorial=1;
+				for(double j=input;j>=1;j--)
+					{
+						factorial=factorial*j;
+					}
+				return factorial;
+			}
+		public double SinValue(double input)
+			{   
+				double degree=Math.toRadians(input);
+				input=(Math.sin(degree)); 
+				return input;
+			}
+
+		public double SinValue1(double input)
+			{   
+				double degree=Math.toRadians(input);
+				input=(Math.sin(degree)); 
+				return input;
+  
+			}
+		public double CosValue(double input)
+			{ 
+				double degree=Math.toRadians(input);
+				input=(Math.cos(degree)); 
+				return input;
+			}
+		public double CosValue1(double input)
+			{ 
+				double degree=Math.toRadians(input);
+				input=(Math.cos(degree)); 
+				return input;
+  
+
+			}
+		public double TanValue(double input)
+			{   
+				double degree=Math.toRadians(input);
+				input=(Math.tan(degree)); 
+				return input;
+			}
+		public double TanValue1(double input)
+			{   
+				double degree=Math.toRadians(input);
+				input=(Math.tan(degree)); 
+				return input;
+			}
+
+}
+
+public class Calculator
+{
+  public static void main(String[] arg)
+ {
+  GuiCalculator b=new GuiCalculator();
+ }
+}
